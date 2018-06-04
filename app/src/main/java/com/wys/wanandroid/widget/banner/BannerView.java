@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 
 import com.wys.wanandroid.R;
 import com.wys.wanandroid.entity.PBannerItemEntity;
+import com.wys.wanandroid.utils.ReflectUtils;
 
 import java.util.List;
 
@@ -59,6 +60,7 @@ public class BannerView extends FrameLayout{
         mBannerViewPager=findViewById(R.id.vp_banner);
         mBannerViewPager.setPageTransformer(true,
                 new ZoomOutPageTransformer());
+        ReflectUtils.viewPagerSlowDown(mBannerViewPager);
     }
     public void setBannerList(List<PBannerItemEntity> mList){
         mAdapter=new LoopPagerAdapter(getContext(),mList);

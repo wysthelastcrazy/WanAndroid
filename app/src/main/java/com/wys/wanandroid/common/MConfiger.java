@@ -15,5 +15,6 @@ public class MConfiger {
 
 	//cookie过期时间 30天 1000 * 60 * 60 * 24 * 30 2592000000l
 	public static final long COOKIE_EXPIRE_TIME = 2592000000l;
+	public static final int VIEWPAGER_SPEED=700;
 }
 
