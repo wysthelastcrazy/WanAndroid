@@ -8,5 +8,5 @@ package com.wys.wanandroid.common;
 public class Common {
     private static final String TAG = "Common";
 
-    public static final String BASEURL = "http://www.wanandroid.com/";
+    public static final String BASEURL = "http://www.wanandroid.com";
 }

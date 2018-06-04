@@ -1,7 +1,12 @@
 package com.wys.wanandroid.http;
 
 
+import com.wys.wanandroid.entity.PHomeArticleListEntity;
+import com.wys.wanandroid.http.callback.HttpBaseResult;
 
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+import rx.Observable;
 
 /**
  * API--接口  服务[这里处理的是同一的返回格式 resultCode  resultInfo Data<T> --->这里的data才是返回的结果,T就是泛型 具体返回的been对象或集合]
@@ -9,5 +14,12 @@ package com.wys.wanandroid.http;
  */
 public interface APIService {
 
+    /**
+     * 获取首页文章列表
+     * @param num
+     * @return
+     */
+    @GET("/article/list/{num}/json")
+    Observable<HttpBaseResult<PHomeArticleListEntity>>getHomeArticleList(@Path("num") int num);
 }
 

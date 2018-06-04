@@ -74,7 +74,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     }
 
     protected void showToast(String str,int duration){
-       Toast.makeText(this,str,duration);
+       Toast.makeText(this,str,duration).show();
     }
 
     @Override
