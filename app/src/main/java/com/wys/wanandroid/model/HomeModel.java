@@ -15,4 +15,9 @@ public class HomeModel extends BaseModel implements HomeContract.IHomeModel{
         MyLog.debug("[getArticleList]  pageNum:"+pageNum);
         addSubscription(apiStores.getHomeArticleList(pageNum),callBack);
     }
+
+    @Override
+    public void getBanner(ApiCallBack callBack) {
+        addSubscription(apiStores.getBanner(),callBack);
+    }
 }

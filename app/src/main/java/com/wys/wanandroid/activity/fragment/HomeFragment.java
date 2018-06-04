@@ -12,9 +12,11 @@ import com.wys.wanandroid.activity.base.BaseNetFragment;
 import com.wys.wanandroid.adapter.HomeAdapter;
 import com.wys.wanandroid.contract.HomeContract;
 import com.wys.wanandroid.contract.HomeContract.IHomePresenter;
+import com.wys.wanandroid.entity.PBannerItemEntity;
 import com.wys.wanandroid.entity.PHomeArticleItemEntity;
 import com.wys.wanandroid.presenter.HomePresenter;
 import com.wys.wanandroid.utils.MyLog;
+import com.wys.wanandroid.widget.banner.BannerView;
 import com.wys.wanandroid.widget.recycler.ExtendRecyclerView;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 public class HomeFragment extends BaseNetFragment<IHomePresenter> implements HomeContract.IHomeView{
     private ExtendRecyclerView mRecyclerView;
     private HomeAdapter mAdapter;
+    private BannerView mBannerView;
     @Override
     public int getLayoutRes() {
         return R.layout.fragment_home;
@@ -38,12 +41,16 @@ public class HomeFragment extends BaseNetFragment<IHomePresenter> implements Hom
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setEnableAutoLoadmore(true);
         mRecyclerView.setOnRefreshLoadmoreListener(refreshLoadmoreListener);
+
+        mBannerView=new BannerView(getActivity());
+        mRecyclerView.addHeaderView(mBannerView);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mPresenter.getArticleList();
+        mPresenter.getBanner();
     }
 
     private OnRefreshLoadmoreListener refreshLoadmoreListener=new OnRefreshLoadmoreListener() {
@@ -81,5 +88,10 @@ public class HomeFragment extends BaseNetFragment<IHomePresenter> implements Hom
         if (isSucc){
             mAdapter.appendList(mList);
         }
+    }
+
+    @Override
+    public void showBanner(ArrayList<PBannerItemEntity> mBanners) {
+        mBannerView.setBannerList(mBanners);
     }
 }

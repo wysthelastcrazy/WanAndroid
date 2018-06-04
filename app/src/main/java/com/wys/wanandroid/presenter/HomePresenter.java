@@ -2,10 +2,13 @@ package com.wys.wanandroid.presenter;
 
 import com.wys.wanandroid.contract.HomeContract;
 import com.wys.wanandroid.contract.base.BasePresenter;
+import com.wys.wanandroid.entity.PBannerItemEntity;
 import com.wys.wanandroid.entity.PHomeArticleListEntity;
 import com.wys.wanandroid.http.callback.ApiCallBack;
 import com.wys.wanandroid.model.HomeModel;
 import com.wys.wanandroid.utils.MyLog;
+
+import java.util.ArrayList;
 
 /**
  * Created by yas on 2018/6/4.
@@ -97,5 +100,26 @@ public class HomePresenter extends BasePresenter<HomeContract.IHomeView> impleme
             mView.loadMore(null, false);
             mView.showToast("没有更多数据！");
         }
+    }
+
+    @Override
+    public void getBanner() {
+        mModel.getBanner(new ApiCallBack<ArrayList<PBannerItemEntity>>(){
+
+            @Override
+            public void onSuccessful(ArrayList<PBannerItemEntity> pBannerItemEntities) {
+                mView.showBanner(pBannerItemEntities);
+            }
+
+            @Override
+            public void onFailed(int errorCode, String errorMsg) {
+
+            }
+
+            @Override
+            public void onCompleted() {
+
+            }
+        });
     }
 }

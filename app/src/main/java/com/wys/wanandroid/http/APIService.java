@@ -1,8 +1,11 @@
 package com.wys.wanandroid.http;
 
 
+import com.wys.wanandroid.entity.PBannerItemEntity;
 import com.wys.wanandroid.entity.PHomeArticleListEntity;
 import com.wys.wanandroid.http.callback.HttpBaseResult;
+
+import java.util.ArrayList;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -21,5 +24,8 @@ public interface APIService {
      */
     @GET("/article/list/{num}/json")
     Observable<HttpBaseResult<PHomeArticleListEntity>>getHomeArticleList(@Path("num") int num);
+
+    @GET("/banner/json")
+    Observable<HttpBaseResult<ArrayList<PBannerItemEntity>>> getBanner();
 }
 

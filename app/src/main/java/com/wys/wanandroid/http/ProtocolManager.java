@@ -1,11 +1,8 @@
 package com.wys.wanandroid.http;
 
 
-import com.wys.wanandroid.entity.PHomeArticleListEntity;
-import com.wys.wanandroid.http.callback.HttpBaseResult;
 import com.wys.wanandroid.http.utils.RetrofitUtils;
 
-import rx.Observable;
 
 /**
  * Created by yas on 2018/4/27.
@@ -30,9 +27,5 @@ public class ProtocolManager {
 
         }
         return instance;
-    }
-
-    Observable<HttpBaseResult<PHomeArticleListEntity>> getHomeData(int pageNum){
-        return apiStores.getHomeArticleList(pageNum);
     }
 }
