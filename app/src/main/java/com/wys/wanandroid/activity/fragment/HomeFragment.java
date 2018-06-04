@@ -42,8 +42,6 @@ public class HomeFragment extends BaseNetFragment<IHomePresenter> implements Hom
         mRecyclerView.setEnableAutoLoadmore(true);
         mRecyclerView.setOnRefreshLoadmoreListener(refreshLoadmoreListener);
 
-        mBannerView=new BannerView(getActivity());
-        mRecyclerView.addHeaderView(mBannerView);
     }
 
     @Override
@@ -92,6 +90,8 @@ public class HomeFragment extends BaseNetFragment<IHomePresenter> implements Hom
 
     @Override
     public void showBanner(ArrayList<PBannerItemEntity> mBanners) {
+        mBannerView=new BannerView(getActivity());
+        mRecyclerView.addHeaderView(mBannerView);
         mBannerView.setBannerList(mBanners);
     }
 }

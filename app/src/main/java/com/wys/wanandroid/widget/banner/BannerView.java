@@ -1,6 +1,8 @@
 package com.wys.wanandroid.widget.banner;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -16,6 +18,23 @@ import java.util.List;
  */
 
 public class BannerView extends FrameLayout{
+    private Handler mHandler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 100:
+                    int curr=mBannerViewPager.getCurrentItem();
+                    if ((curr+1)<mAdapter.getCount()){
+                        mBannerViewPager.setCurrentItem(curr+1,true);
+                    }else{
+                        mBannerViewPager.setCurrentItem(0,true);
+                    }
+                    mHandler.sendEmptyMessageDelayed(100, 3000);
+                    break;
+            }
+        }
+    };
     private ViewPager mBannerViewPager;
     private LoopPagerAdapter mAdapter;
     public BannerView(Context context) {
@@ -42,5 +61,11 @@ public class BannerView extends FrameLayout{
     public void setBannerList(List<PBannerItemEntity> mList){
         mAdapter=new LoopPagerAdapter(getContext(),mList);
         mBannerViewPager.setAdapter(mAdapter);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mHandler.sendEmptyMessageDelayed(100, 3000);
+            }
+        }).start();
     }
 }
