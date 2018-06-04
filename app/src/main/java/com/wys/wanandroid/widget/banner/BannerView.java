@@ -57,6 +57,8 @@ public class BannerView extends FrameLayout{
         li.inflate(R.layout.banner_view_layout,this,true);
 
         mBannerViewPager=findViewById(R.id.vp_banner);
+        mBannerViewPager.setPageTransformer(true,
+                new ZoomOutPageTransformer());
     }
     public void setBannerList(List<PBannerItemEntity> mList){
         mAdapter=new LoopPagerAdapter(getContext(),mList);
