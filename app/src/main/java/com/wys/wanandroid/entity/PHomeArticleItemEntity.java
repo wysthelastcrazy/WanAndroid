@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class PHomeArticleItemEntity implements Serializable{
     public String apkLink;
     public String author;
-    public int chapyerId;
+    public int chapterId;
     public String chapterName;
     public boolean collect;
     public int courseId;

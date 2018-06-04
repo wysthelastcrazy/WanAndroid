@@ -13,7 +13,7 @@ import com.wys.wanandroid.utils.MyLog;
 
 public class HomePresenter extends BasePresenter<HomeContract.IHomeView> implements HomeContract.IHomePresenter{
     private HomeContract.IHomeModel mModel;
-    private int curPage=65;
+    private int curPage=0;
     private boolean over;
     @Override
     public void initModel() {
@@ -51,7 +51,7 @@ public class HomePresenter extends BasePresenter<HomeContract.IHomeView> impleme
 
     @Override
     public void refresh() {
-        curPage=1;
+        curPage=0;
         mModel.getArticleList(curPage, new ApiCallBack<PHomeArticleListEntity>() {
 
             @Override

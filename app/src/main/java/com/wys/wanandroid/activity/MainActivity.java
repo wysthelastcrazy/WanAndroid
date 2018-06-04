@@ -1,7 +1,6 @@
 package com.wys.wanandroid.activity;
 
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -37,7 +36,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initLayout() {
-        mBottomView=this.findViewById(R.id.mBottomView);
+        mBottomView= (BottomNavigationBar) this.findViewById(R.id.mBottomView);
 
         mBottomView.setMode(BottomNavigationBar.MODE_SHIFTING);
         mBottomView.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_RIPPLE);
