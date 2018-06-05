@@ -5,6 +5,8 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.wys.wanandroid.utils.MyLog;
+
 /**
  * Created by yas on 2018/6/5.
  */
@@ -30,8 +32,10 @@ public class SlideLayoutManager extends RecyclerView.LayoutManager{
 
     @Override
     public void onLayoutChildren(final RecyclerView.Recycler recycler, RecyclerView.State state) {
+
         detachAndScrapAttachedViews(recycler);
         int itemCount = getItemCount();
+        MyLog.debug("[onLayoutChildren]===================  itemCount:"+itemCount);
         if (itemCount > ItemConfig.DEFAULT_SHOW_ITEM) {
             for (int position = ItemConfig.DEFAULT_SHOW_ITEM; position >= 0; position--) {
                 final View view = recycler.getViewForPosition(position);

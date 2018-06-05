@@ -7,6 +7,8 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 
+import com.wys.wanandroid.utils.MyLog;
+
 import java.util.List;
 
 /**
@@ -46,6 +48,7 @@ public class ItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
 
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+        MyLog.debug("[getMovementFlags]=================== ");
         int dragFlags = 0;
         int slideFlags = 0;
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
@@ -62,6 +65,7 @@ public class ItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+        MyLog.debug("[onSwiped]===================  position:"+viewHolder.getLayoutPosition());
         viewHolder.itemView.setOnTouchListener(null);
         int layoutPosition = viewHolder.getLayoutPosition();
         T remove = dataList.remove(layoutPosition);
@@ -94,6 +98,7 @@ public class ItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
                 ratio = -1;
             }
             itemView.setRotation(ratio * ItemConfig.DEFAULT_ROTATE_DEGREE);
+            MyLog.debug("[onChildDraw]===================  ratio:"+ratio);
             int childCount = recyclerView.getChildCount();
             if (childCount > ItemConfig.DEFAULT_SHOW_ITEM) {
                 for (int position = 1; position < childCount - 1; position++) {
