@@ -58,7 +58,7 @@ public class KnowledgeFragment extends BaseNetFragment<KnowledgeContract.IKnowle
 
     @Override
     public void refresh(ArrayList<PKnowledgeEntity> mList, boolean isSucc) {
-        mRecyclerView.finishRefresh(isSucc);
+//        mRecyclerView.finishRefresh(isSucc);
         if (isSucc) mAdapter.reSetList(mList);
     }
 
