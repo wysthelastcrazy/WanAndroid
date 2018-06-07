@@ -1,27 +1,29 @@
 package com.wys.wanandroid.activity.fragment;
 
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.wys.wanandroid.R;
 import com.wys.wanandroid.activity.base.BaseFragment;
-import com.wys.wanandroid.adapter.SlideAdapter;
-import com.wys.wanandroid.entity.PSlideEntity;
-import com.wys.wanandroid.widget.recycler.XRecyclerView;
-import com.wys.wanandroid.widget.recycler.customLayoutManager.slide.ItemTouchHelperCallback;
-import com.wys.wanandroid.widget.recycler.customLayoutManager.slide.SlideLayoutManager;
+import com.wys.wanandroid.activity.base.BaseNetFragment;
+import com.wys.wanandroid.adapter.KnowledgeAdapter;
+import com.wys.wanandroid.contract.KnowledgeContract;
+import com.wys.wanandroid.entity.PKnowledgeEntity;
+import com.wys.wanandroid.presenter.KnowledgePresenter;
+import com.wys.wanandroid.widget.recycler.ExtendRecyclerView;
 
 import java.util.ArrayList;
+
 
 /**
  * Created by yas on 2018/6/1.
  */
 
-public class KnowledgeFragment extends BaseFragment {
-    private XRecyclerView mRecyclerView;
-    private SlideAdapter mAdapter;
-    private ArrayList<PSlideEntity> mList = new ArrayList<>();
+public class KnowledgeFragment extends BaseNetFragment<KnowledgeContract.IKnowledgePresenter> implements KnowledgeContract.IKnowledgeView{
+    private ExtendRecyclerView mRecyclerView;
+    private KnowledgeAdapter mAdapter;
     @Override
     public int getLayoutRes() {
         return R.layout.fragment_konwlege;
@@ -31,45 +33,38 @@ public class KnowledgeFragment extends BaseFragment {
     public void initViews(View rootView) {
         mRecyclerView=rootView.findViewById(R.id.mRecyclerView_knowledge);
 
-
-        mAdapter=new SlideAdapter(getActivity(),mList);
-        mRecyclerView.setAdapter(mAdapter);
-        addData();
-
-        ItemTouchHelper itemTouchHelper=new ItemTouchHelper(new ItemTouchHelperCallback(mRecyclerView.getAdapter(),mList));
-
-        SlideLayoutManager manager=new SlideLayoutManager(mRecyclerView,itemTouchHelper);
-        itemTouchHelper.attachToRecyclerView(mRecyclerView);
+        LinearLayoutManager manager=new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.setEnableAutoLoadmore(false);
+        mRecyclerView.setOnRefreshListener(mRefreshListener);
+        mPresenter.getKnowledgeTree();
 
     }
-    /**
-     * 向集合中添加数据
-     */
-    private void addData(){
-        int[] icons = {R.mipmap.header_icon_1, R.mipmap.header_icon_2, R.mipmap.header_icon_3,
-                R.mipmap.header_icon_4, R.mipmap.header_icon_1, R.mipmap.header_icon_2};
-        String[] titles = {"Acknowledging", "Belief", "Confidence", "Dreaming", "Happiness", "Confidence"};
-        String[] says = {
-                "Do one thing at a time, and do well.",
-                "Keep on going never give up.",
-                "Whatever is worth doing is worth doing well.",
-                "I can because i think i can.",
-                "Jack of all trades and master of none.",
-                "Keep on going never give up.",
-                "Whatever is worth doing is worth doing well.",
-        };
-        int[] bgs = {
-                R.mipmap.img_slide_1,
-                R.mipmap.img_slide_2,
-                R.mipmap.img_slide_3,
-                R.mipmap.img_slide_4,
-                R.mipmap.img_slide_5,
-                R.mipmap.img_slide_6
-        };
-
-        for (int i = 0; i < 6; i++) {
-            mList.add(new PSlideEntity(bgs[i],titles[i],icons[i],says[i]));
+    private OnRefreshListener mRefreshListener=new OnRefreshListener() {
+        @Override
+        public void onRefresh(RefreshLayout refreshlayout) {
+            mPresenter.refresh();
         }
+    };
+    @Override
+    public void showListInfo(ArrayList<PKnowledgeEntity> mList) {
+        if (mAdapter==null){
+            mAdapter=new KnowledgeAdapter(getActivity(),mList);
+            mRecyclerView.setAdapter(mAdapter);
+        }else{
+            mAdapter.reSetList(mList);
+        }
+    }
+
+    @Override
+    public void refresh(ArrayList<PKnowledgeEntity> mList, boolean isSucc) {
+        mRecyclerView.finishRefresh(isSucc);
+        if (isSucc) mAdapter.reSetList(mList);
+    }
+
+
+    @Override
+    protected KnowledgeContract.IKnowledgePresenter initPresenter() {
+        return new KnowledgePresenter();
     }
 }

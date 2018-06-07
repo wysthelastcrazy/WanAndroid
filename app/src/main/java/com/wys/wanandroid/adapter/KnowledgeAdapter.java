@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.wys.wanandroid.R;
 import com.wys.wanandroid.adapter.base.BaseRecyclerAdapter;
 import com.wys.wanandroid.adapter.base.BaseViewHolder;
+import com.wys.wanandroid.entity.PKnowledgeEntity;
 import com.wys.wanandroid.entity.PSlideEntity;
 
 import java.util.ArrayList;
@@ -17,9 +18,9 @@ import java.util.ArrayList;
  * Created by yas on 2018/5/31.
  */
 
-public class SlideAdapter extends BaseRecyclerAdapter<SlideAdapter.MyViewHolder,PSlideEntity> {
+public class KnowledgeAdapter extends BaseRecyclerAdapter<KnowledgeAdapter.MyViewHolder,PKnowledgeEntity> {
 
-    public SlideAdapter(Context mContext, ArrayList<PSlideEntity> mList) {
+    public KnowledgeAdapter(Context mContext, ArrayList<PKnowledgeEntity> mList) {
         super(mContext, mList);
     }
 
@@ -33,29 +34,29 @@ public class SlideAdapter extends BaseRecyclerAdapter<SlideAdapter.MyViewHolder,
         return new MyViewHolder(itemView);
     }
 
-    class MyViewHolder extends BaseViewHolder<PSlideEntity> {
-        private ImageView imgBg;
-        private ImageView userIcon;
+    class MyViewHolder extends BaseViewHolder<PKnowledgeEntity> {
         private TextView tvTitle;
-        private TextView userSay;
+        private TextView tvSubTitle;
         public MyViewHolder(View itemView) {
             super(itemView);
         }
 
         @Override
         public void initView() {
-            imgBg = itemView.findViewById(R.id.img_bg);
-            userIcon = itemView.findViewById(R.id.img_user);
-            tvTitle = itemView.findViewById(R.id.tv_title);
-            userSay = itemView.findViewById(R.id.tv_user_say);
+            tvTitle = itemView.findViewById(R.id.txt_title);
+            tvSubTitle = itemView.findViewById(R.id.txt_subTitle);
         }
 
         @Override
-        public void setValues(PSlideEntity pSlideEntity) {
-            imgBg.setImageResource(pSlideEntity.mItemBg);
-            tvTitle.setText(pSlideEntity.mTitle);
-            userIcon.setImageResource(pSlideEntity.mUserIcon);
-            userSay.setText(pSlideEntity.mUserSay);
+        public void setValues(PKnowledgeEntity entity) {
+            tvTitle.setText(entity.name);
+            String subTitle="";
+            if (entity.children!=null){
+                for (int i=0;i<entity.children.size();i++) {
+                    subTitle = subTitle + " " + entity.children.get(i).name;
+                }
+            }
+            tvSubTitle.setText(subTitle);
         }
     }
 }

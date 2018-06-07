@@ -1,8 +1,6 @@
 package com.wys.wanandroid.contract.base;
 
 
-import com.wys.wanandroid.http.APIService;
-import com.wys.wanandroid.http.ProtocolManager;
 import com.wys.wanandroid.http.callback.ApiCallBack;
 import com.wys.wanandroid.http.callback.SubscriberCallBack;
 
@@ -16,7 +14,6 @@ import rx.subscriptions.CompositeSubscription;
  */
 
 public class BaseModel implements IBaseModel{
-    public APIService apiStores= ProtocolManager.getInstance().apiStores;
     private CompositeSubscription mCompositeSubscription;
 
     @Override

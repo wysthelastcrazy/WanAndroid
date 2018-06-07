@@ -18,7 +18,7 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder{
         this.mContext=mContext;
     }
     public abstract void initView();
-    public abstract void setValues(T t);
+    public abstract void setValues(T entity);
 
     public void setPos(int pos){
         this.pos = pos;
