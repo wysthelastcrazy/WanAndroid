@@ -1,5 +1,6 @@
 package com.wys.wanandroid.activity.fragment;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -9,9 +10,11 @@ import com.wys.wanandroid.R;
 import com.wys.wanandroid.activity.base.BaseFragment;
 import com.wys.wanandroid.activity.base.BaseNetFragment;
 import com.wys.wanandroid.adapter.KnowledgeAdapter;
+import com.wys.wanandroid.adapter.base.OnItemClickListener;
 import com.wys.wanandroid.contract.KnowledgeContract;
 import com.wys.wanandroid.entity.PKnowledgeEntity;
 import com.wys.wanandroid.presenter.KnowledgePresenter;
+import com.wys.wanandroid.utils.IntentUtils;
 import com.wys.wanandroid.widget.recycler.ExtendRecyclerView;
 
 import java.util.ArrayList;
@@ -50,12 +53,21 @@ public class KnowledgeFragment extends BaseNetFragment<KnowledgeContract.IKnowle
     public void showListInfo(ArrayList<PKnowledgeEntity> mList) {
         if (mAdapter==null){
             mAdapter=new KnowledgeAdapter(getActivity(),mList);
+            mAdapter.setOnItemClickListener(itemClickListener);
             mRecyclerView.setAdapter(mAdapter);
         }else{
             mAdapter.reSetList(mList);
         }
     }
+    private OnItemClickListener itemClickListener=new OnItemClickListener<PKnowledgeEntity>() {
 
+        @Override
+        public void onItemClick(View itemView, PKnowledgeEntity entity, int position) {
+            if (entity!=null){
+                IntentUtils.startKnowledgeActivity(getActivity(),entity);
+            }
+        }
+    };
     @Override
     public void refresh(ArrayList<PKnowledgeEntity> mList, boolean isSucc) {
 //        mRecyclerView.finishRefresh(isSucc);

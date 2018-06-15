@@ -25,7 +25,6 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
         initViews(rootView);
         return rootView;
     }
-
     /**
      * 获取布局文件id
      * @return
