@@ -15,11 +15,12 @@ import com.wys.wanandroid.utils.MyLog;
 import java.util.ArrayList;
 
 /**
- * Created by yas on 2018/6/4.
+ * Created by yas on 2018/6/28.
  */
 
-public class HomeAdapter extends BaseRecyclerAdapter<HomeAdapter.HomeViewHolder,PHomeArticleItemEntity>{
-    public HomeAdapter(Context mContext, ArrayList<PHomeArticleItemEntity> mList) {
+public class ArticleAdapter extends BaseRecyclerAdapter<ArticleAdapter.MyViewHold,PHomeArticleItemEntity>{
+
+    public ArticleAdapter(Context mContext, ArrayList<PHomeArticleItemEntity> mList) {
         super(mContext, mList);
     }
 
@@ -29,18 +30,18 @@ public class HomeAdapter extends BaseRecyclerAdapter<HomeAdapter.HomeViewHolder,
     }
 
     @Override
-    protected HomeViewHolder getViewHolder(View itemView) {
-        return new HomeViewHolder(itemView);
+    protected MyViewHold getViewHolder(View itemView) {
+        return new MyViewHold(itemView);
     }
 
-    class HomeViewHolder extends BaseViewHolder<PHomeArticleItemEntity>{
+    class MyViewHold extends BaseViewHolder<PHomeArticleItemEntity>{
         private ImageView imgIcon;
         private TextView txtAuthor;
         private TextView txtTime;
         private TextView txtTitle;
         private TextView txtTag;
         private ImageView imgCollect;
-        public HomeViewHolder(View itemView) {
+        public MyViewHold(View itemView) {
             super(itemView);
         }
 
@@ -55,17 +56,16 @@ public class HomeAdapter extends BaseRecyclerAdapter<HomeAdapter.HomeViewHolder,
         }
 
         @Override
-        public void setValues(PHomeArticleItemEntity pHomeArticleItemEntity) {
-            MyLog.debug("[setValues]  ====");
-           txtAuthor.setText(pHomeArticleItemEntity.author);
-           txtTime.setText(DateUtil.getCurrentTimeV2(pHomeArticleItemEntity.publishTime));
-           txtTitle.setText(pHomeArticleItemEntity.title);
-           txtTag.setText(pHomeArticleItemEntity.chapterName);
-           if (pHomeArticleItemEntity.collect){
-               imgCollect.setImageResource(R.mipmap.xq_collect_ok);
-           }else{
-               imgCollect.setImageResource(R.mipmap.xq_collect);
-           }
+        public void setValues(PHomeArticleItemEntity entity) {
+            txtAuthor.setText(entity.author);
+            txtTime.setText(DateUtil.getCurrentTimeV2(entity.publishTime));
+            txtTitle.setText(entity.title);
+            txtTag.setText(entity.chapterName);
+            if (entity.collect){
+                imgCollect.setImageResource(R.mipmap.xq_collect_ok);
+            }else{
+                imgCollect.setImageResource(R.mipmap.xq_collect);
+            }
         }
     }
 }

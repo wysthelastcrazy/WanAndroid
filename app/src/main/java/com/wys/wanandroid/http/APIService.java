@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -31,5 +32,8 @@ public interface APIService {
     Observable<HttpBaseResult<ArrayList<PBannerItemEntity>>> getBanner();
     @GET("/tree/json")
     Observable<HttpBaseResult<ArrayList<PKnowledgeEntity>>>getKnowledgeTree();
+
+    @GET("/article/list/{num}/json")
+    Observable<HttpBaseResult<PHomeArticleListEntity>>getKnowledgeArticleList(@Path("num") int num, @Query("cid") int cid);
 }
 

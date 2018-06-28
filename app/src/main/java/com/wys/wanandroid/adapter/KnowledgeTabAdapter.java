@@ -28,7 +28,7 @@ public class KnowledgeTabAdapter extends FragmentStatePagerAdapter{
         for (int i=0;i<mList.size();i++){
             PKnowledgeEntity itemEntity= mList.get(i);
             Bundle bundle=new Bundle();
-            bundle.putInt("cid",itemEntity.courseId);
+            bundle.putInt("cid",itemEntity.id);
             Fragment fragment=new KnowledgeItemFragment();
             fragment.setArguments(bundle);
             fragments.add(fragment);

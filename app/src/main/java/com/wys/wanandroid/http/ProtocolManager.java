@@ -46,4 +46,8 @@ public class ProtocolManager {
     public static Observable<HttpBaseResult<ArrayList<PKnowledgeEntity>>> getKnowledgeTree(){
         return apiStores.getKnowledgeTree();
     }
+
+    public static Observable<HttpBaseResult<PHomeArticleListEntity>> getKnowledgeArticleList(int num,int cid){
+        return apiStores.getKnowledgeArticleList(num,cid);
+    }
 }

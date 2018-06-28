@@ -1,13 +1,11 @@
 package com.wys.wanandroid.activity.fragment;
 
-import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.wys.wanandroid.R;
-import com.wys.wanandroid.activity.base.BaseFragment;
 import com.wys.wanandroid.activity.base.BaseNetFragment;
 import com.wys.wanandroid.adapter.KnowledgeAdapter;
 import com.wys.wanandroid.adapter.base.OnItemClickListener;
