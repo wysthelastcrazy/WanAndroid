@@ -21,6 +21,7 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        if (rootView==null)
         rootView=inflater.inflate(getLayoutRes(),null);
         initViews(rootView);
         return rootView;
