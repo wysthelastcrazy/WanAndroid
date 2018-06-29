@@ -61,6 +61,7 @@ public class BannerView extends FrameLayout{
         mBannerViewPager.setPageTransformer(true,
                 new ZoomOutPageTransformer());
         ReflectUtils.viewPagerSlowDown(mBannerViewPager);
+
     }
     public void setBannerList(List<PBannerItemEntity> mList){
         mAdapter=new LoopPagerAdapter(getContext(),mList);
