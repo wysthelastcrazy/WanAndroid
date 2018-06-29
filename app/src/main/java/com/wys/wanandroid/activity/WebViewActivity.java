@@ -42,10 +42,17 @@ public class WebViewActivity extends BaseActivity {
         webView= (WebView) this.findViewById(R.id.webView);
         tvTitle= (TextView) this.findViewById(R.id.tv_title);
         imgBack= (ImageView) this.findViewById(R.id.img_back);
-
-
-
-
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //如果当前页面可以回退则进行回退操作，否则关闭本页面
+                if (webView!=null&&webView.canGoBack()){
+                    webView.goBack();
+                }else{
+                    finish();
+                }
+            }
+        });
 
         webView.setWebViewClient(webViewClient);
         webView.setWebChromeClient(chromeClient);
