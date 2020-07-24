@@ -1,6 +1,6 @@
 package com.wys.wanandroid.activity.fragment;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -8,7 +8,6 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 import com.wys.wanandroid.R;
 import com.wys.wanandroid.activity.base.BaseNetFragment;
 import com.wys.wanandroid.adapter.ArticleAdapter;
-import com.wys.wanandroid.adapter.HomeAdapter;
 import com.wys.wanandroid.contract.KnowledgeArticleContract;
 import com.wys.wanandroid.entity.PHomeArticleItemEntity;
 import com.wys.wanandroid.presenter.ArticlePresenter;

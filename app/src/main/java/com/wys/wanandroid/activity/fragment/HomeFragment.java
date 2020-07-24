@@ -1,8 +1,8 @@
 package com.wys.wanandroid.activity.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -15,7 +15,6 @@ import com.wys.wanandroid.contract.HomeContract.IHomePresenter;
 import com.wys.wanandroid.entity.PBannerItemEntity;
 import com.wys.wanandroid.entity.PHomeArticleItemEntity;
 import com.wys.wanandroid.presenter.HomePresenter;
-import com.wys.wanandroid.utils.MyLog;
 import com.wys.wanandroid.widget.banner.BannerView;
 import com.wys.wanandroid.widget.recycler.ExtendRecyclerView;
 

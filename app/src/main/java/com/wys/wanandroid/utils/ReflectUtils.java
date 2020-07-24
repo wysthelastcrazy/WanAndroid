@@ -1,6 +1,6 @@
 package com.wys.wanandroid.utils;
 
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 import android.view.animation.AccelerateInterpolator;
 
 import com.wys.wanandroid.common.MConfiger;

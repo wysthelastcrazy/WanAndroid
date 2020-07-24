@@ -2,9 +2,8 @@ package com.wys.wanandroid.activity.base;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
-import com.wys.wanandroid.contract.base.BasePresenter;
 import com.wys.wanandroid.contract.base.IBasePresenter;
 
 
