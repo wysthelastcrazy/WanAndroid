@@ -7,7 +7,11 @@ package com.wys.baselibrary
  */
 class BaseLibrary {
     companion object{
-        fun initRequest(){
+        const val str = "str"
+        fun init(){
+            initRequest()
+        }
+        private fun initRequest(){
 
         }
     }
